@@ -1,6 +1,6 @@
 # Neural Style Transfer
 
-This is a simple repository that implements **Multiple Style Transfer Network** mentioned in paper [A Learned Representation For Artistic Style](https://arxiv.org/abs/1603.08155).
+This is a simple implementation **Multiple Style Transfer Network** mentioned in paper [A Learned Representation For Artistic Style](https://arxiv.org/abs/1610.07629). The network is trained on COCO Dataset containing 80K images for 40K iteration. However we can use any dataset to while testing the style-transfer model. The model is trained using 6 style images taken from WikiArt Dataset provided by [ArtGAN repo](https://github.com/cs-chan/ArtGAN/blob/master/WikiArt%20Dataset/README.md).
 
 ## Requirement
 
@@ -22,4 +22,10 @@ During backward pass only `weigth[label:]` tensor are updated and rest remaing t
 Here weight and bias refer to ![\gamma](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cgamma) and ![\beta](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cbeta) used for normalization.
 
 ## Result
-<img src="/video/input.gif" width="30%" height="30%">  <img src="/video/output5.gif" width="30%" height="30%">
+
+<img src="/video/demo.gif"> 
+
+## References
+* [A Neural Algorithm of Artistic Style](https://arxiv.org/abs/1508.06576). 
+* [Perceptual Losses for Real-Time Style Transfer and Super-Resolution](https://arxiv.org/abs/1603.08155). 
+* [A Learned Representation For Artistic Style](https://arxiv.org/abs/1610.07629)
