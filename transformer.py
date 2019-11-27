@@ -4,9 +4,13 @@ import torch.nn as nn
 from layers import _ConvInstanceReLu, _ResidualBlock, _UpsamplingConv
 
 class TransformNetwork(nn.Module):
+    """
+    The TransformNetwork architecture is same as mentioned in 
+    [paper](https://arxiv.org/pdf/1603.08155.pdf)
+    """
     def __init__(self, inch, labels):
-        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         super(TransformNetwork, self).__init__()
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         ngf = 32
         self.conv1 = _ConvInstanceReLu(inch, ngf, 9, 1, labels)
         self.conv2 = _ConvInstanceReLu(ngf, ngf*2, 3, 2, labels)

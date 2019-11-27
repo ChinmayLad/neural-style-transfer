@@ -3,9 +3,23 @@ from torch.nn import Module, init
 from torch.nn import Parameter
 from torch.nn import functional as F
 
-# TODO: check contiguous in THNN
-# TODO: use separate backend functions?
 class _ConditionalInstanceNorm(Module):
+
+    """
+    PyTorch does not contain api for Conditional Instance Normalization.
+    This is a implementation that uses code from torch BatchNorm and is
+    tweaked as to have condition learnable weights.
+
+    [link](https://pytorch.org/docs/stable/_modules/torch/nn/modules/batchnorm.html)
+
+    The idea is to have weight tensor of size L x C, where L is the no. of
+    style representations during training.
+
+    During the forward pass we provide input image as well as style condition "label" ~ [0,L).
+    During backward pass only weigth[label:] tensor are updated and rest remaing the same.
+    Here weight and bias refer to \gamma and \beta used for normalization.
+    """
+
     _version = 1
     __constants__ = ['track_running_stats', 'momentum', 'eps', 'weight', 'bias',
                      'running_mean', 'running_var', 'num_batches_tracked',

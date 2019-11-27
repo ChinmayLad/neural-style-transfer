@@ -2,6 +2,14 @@ import torch.nn as nn
 from torchvision.models import vgg16
 
 class VGG(nn.Module):
+    """
+    The VGG class imports a pretrained VGG-16 model from torchvision library.
+    This class is used for calculating the feature reconstruction loss (Content Loss)
+    and style reconstruction loss (Style Loss).
+    style_layers array consist of layers whose output are used for style representation.
+    structure_layers array consist of layer whose output are used for content-representation
+    and is one of the higher layer as discussed in the paper.
+    """
     def __init__(self):
         super(VGG, self).__init__()
         self.vgg16 = vgg16(pretrained=True).eval()

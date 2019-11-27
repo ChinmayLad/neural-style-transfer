@@ -1,6 +1,12 @@
 import torch.nn as nn
 from normalization import _ConditionalInstanceNorm
+
 class _ConvInstanceReLu(nn.Module):
+    """
+    A custom convolution layer that contains reflection_padding, conditional_instance_norm
+    and a relu activation.
+    The forward pass takes in label as an input that is used in normalization.
+    """
     def __init__(self, inch, outch, kernel_size, stride=2, labels=1, activation='relu'):
         super(_ConvInstanceReLu, self).__init__()
         padding = kernel_size // 2
