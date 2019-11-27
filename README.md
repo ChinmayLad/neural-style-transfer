@@ -22,8 +22,10 @@ During backward pass only `weigth[label:]` tensor are updated and rest remaing t
 Here weight and bias refer to ![\gamma](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cgamma) and ![\beta](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cbeta) used for normalization.
 
 ## Result
+<img src="/demo/image_table.png"> 
 
-<img src="/video/demo.gif"> 
+We can also use to model to convert video into Artistic Styles
+<img src="/demo/demo.gif"> 
 
 ## References
 * [A Neural Algorithm of Artistic Style](https://arxiv.org/abs/1508.06576). 

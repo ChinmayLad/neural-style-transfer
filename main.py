@@ -21,8 +21,8 @@ def main():
 	_, frame = capture.read()
 	h, w, c = frame.shape
 	# four_cc = cv2.VideoWriter_fourcc('M','J','P','G')
-	# writer = cv2.VideoWriter('video/output10.avi', four_cc, 10, (w+w-200, h))
-	# writerin = cv2.VideoWriter('video/input.avi', four_cc, 10, (w, h))
+	# writer = cv2.VideoWriter('demo/output10.avi', four_cc, 10, (w+w-200, h))
+	# writerin = cv2.VideoWriter('demo/input.avi', four_cc, 10, (w, h))
 	while capture.isOpened():
 		ret, frame = capture.read()
 		if ret:
