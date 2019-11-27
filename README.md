@@ -21,10 +21,11 @@ During the forward pass we provide input image as well as style condition "label
 During backward pass only `weigth[label:]` tensor are updated and rest remaing the same.
 Here weight and bias refer to ![\gamma](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cgamma) and ![\beta](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cbeta) used for normalization.
 
-## Result
+## Results
+
 <img src="/demo/image_table.png"> 
 
-We can also use to model to convert video into Artistic Styles
+The model is fast enough to convert video into Artistic Styles in real-time.
 <img src="/demo/demo.gif"> 
 
 ## References
