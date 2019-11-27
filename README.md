@@ -17,6 +17,9 @@ tweaked as to have condition learnable weights.
 The idea is to have weight tensor of size L x C, where L is the no. of
 style representations during training.
 
-During the forward pass we provide input image as well as style condition "label" ~ [0,L).
-During backward pass only weigth[label:] tensor are updated and rest remaing the same.
-Here weight and bias refer to ![gamma](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cgamma) and $$\beta$$ used for normalization.
+During the forward pass we provide input image as well as style condition "label" ~ \[0,L).
+During backward pass only `weigth[label:]` tensor are updated and rest remaing the same.
+Here weight and bias refer to ![\gamma](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cgamma) and ![\beta](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cbeta) used for normalization.
+
+## Result
+<img src="/video/input.gif" width="30%" height="30%">  <img src="/video/output5.gif" width="30%" height="30%">
