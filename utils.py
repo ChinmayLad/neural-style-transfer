@@ -1,5 +1,9 @@
 import torch
 
+"""
+Used for calculating the correlation between the channels of an input feature map.
+G = psi*transpose(psi)
+"""
 def gram_matrix(x):
     b, c, h, w = x.shape
     # b x c x h x w

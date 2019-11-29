@@ -1,5 +1,7 @@
 import torch.nn as nn
+import torch
 from torchvision.models import vgg16
+from utils import gram_matrix
 
 class VGG(nn.Module):
     """
@@ -12,7 +14,8 @@ class VGG(nn.Module):
     """
     def __init__(self):
         super(VGG, self).__init__()
-        self.vgg16 = vgg16(pretrained=True).eval()
+        self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        self.vgg16 = vgg16(pretrained=True).to(self.device).eval()
         self.style_layers = ['3', '8', '15', '22']
         self.structure_layers = ['15']
     
@@ -36,7 +39,7 @@ class VGG(nn.Module):
     def structure(self, x):
         return self._get_layer_outputs(x, self.structure_layers)[0]
 
-    def feature_reconstruction_loss(self, pred, target, weights):
+    def feature_reconstruction_loss(self, pred, target, weights=1):
         if target.shape[0] != pred.shape[0]:
             target = torch.cat([target for _ in range(pred.shape[0])], 0)
         phi_pred = self.structure(pred)
@@ -44,14 +47,12 @@ class VGG(nn.Module):
         squared_error = (phi_pred - phi_target)**2
         return weights*torch.mean(squared_error, dim=(1,2,3))
 
-    def style_reconstruction_loss(self, pred, target, weights):
+    def style_reconstruction_loss(self, pred, target, weights=[1,1,1,1]):
         if target.shape[0] != pred.shape[0]:
             target = torch.cat([target for _ in range(pred.shape[0])], 0)
         phi_pred = self.style(pred)
         phi_target = self.style(target)
-        s = torch.empty(pred.shape[0]).fill_(0.0).requires_grad_(True)
-        if torch.cuda.is_available():
-            s = s.cuda()
+        s = torch.empty(pred.shape[0]).fill_(0.0).requires_grad_(True).to(self.device)
         for w, p, t in zip(weights, phi_pred, phi_target):
             gm_pred = gram_matrix(p)
             gm_target = gram_matrix(t)
@@ -61,4 +62,7 @@ class VGG(nn.Module):
 
 if __name__ == "__main__":
     vgg = VGG()
-    print(vgg)
+    pred = torch.randn(3,3,256,256).cuda()
+    target = torch.randn(3,3,256,256).cuda()
+    print(vgg.feature_reconstruction_loss(pred, target))
+    print(vgg.style_reconstruction_loss(pred, target))
