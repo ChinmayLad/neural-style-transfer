@@ -8,6 +8,7 @@ This is a simple implementation **Multiple Style Transfer Network** mentioned in
 * torchvision
 * OpenCV (cv2)
 * Numpy
+* PIL
 
 ## Conditional Instance Normalization
 PyTorch does not contain api for Conditional Instance Normalization.
