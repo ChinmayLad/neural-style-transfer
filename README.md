@@ -2,6 +2,8 @@
 
 This is a simple implementation **Multiple Style Transfer Network** mentioned in paper [A Learned Representation For Artistic Style](https://arxiv.org/abs/1610.07629). The network is trained on COCO Dataset containing 80K images for 40K iteration. However we can use any dataset to while testing the style-transfer model. The model is trained using 6 style images taken from WikiArt Dataset provided by [ArtGAN repo](https://github.com/cs-chan/ArtGAN/blob/master/WikiArt%20Dataset/README.md).
 
+Here's a [blog](https://medium.com/analytics-vidhya/understanding-neural-style-transfer-3061cd92648?) I wrote that describes the mathematics for neural style transfer in detail.
+
 ## Requirement
 
 * PyTorch
